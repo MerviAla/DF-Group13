@@ -48,16 +48,19 @@ def set_alarm(time):
 
 # Motor control functions
 def stop_motor():
+    print("Motors stopped")
     motor_front_in1.value(0)
     motor_front_in2.value(0)
     motor_rear_in3.value(0)
     motor_rear_in4.value(0)
 
 def move_forward():
+    print("Moving forward")
     motor_front_in1.value(1)
     motor_front_in2.value(0)
     motor_rear_in3.value(0)
     motor_rear_in4.value(0)
+    utime.sleep(0.2)
 
 def turn_left():
     print("Turning left")
@@ -70,7 +73,7 @@ def turn_left():
     
 def turn_right():
     print("Turning right")
-    motor_front_in1.value(1)
+    motor_front_in1.value(0)
     motor_front_in2.value(0)
     motor_rear_in3.value(1)
     motor_rear_in4.value(0)
@@ -79,8 +82,9 @@ def turn_right():
 
 # Sound buzzer
 def play_buzzer():
-    buzzer.freq(2000)  # Taajuus (Hz)
-    buzzer.duty_u16(5000)  # Äänenvoimakkuus
+    print("Buzzer on")
+    buzzer.freq(500)  # Taajuus (Hz)
+    buzzer.duty_u16(8000)  # Äänenvoimakkuus
     utime.sleep(0.5)
     buzzer.duty_u16(0)  # Sammuta ääni
 
@@ -113,7 +117,6 @@ def alarm():
             #Ifn no obstacles, moving forward
             if distance > 20:
                 move_forward()
-                print("moving forward")
         
         if distance == -1:
             print("Ultrasonic sensor error: No signal")
@@ -141,8 +144,7 @@ def main():
             utime.sleep(1)
             
 #set the alarm time            
-set_alarm("14:43:00")
+set_alarm("18:35:00")
 
 #the main loop
 main()
-#stop_motor()
